@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>J.A.R.V.I.S — AI Assistant</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <div class="jarvis-shell">
+
+    <!-- HEADER -->
+    <header class="hud-header">
+      <div class="logo-block">
+        <div class="arc-reactor">
+          <div class="arc-ring r1"></div>
+          <div class="arc-ring r2"></div>
+          <div class="arc-core"></div>
+        </div>
+        <div class="logo-text">
+          <span class="logo-main">J.A.R.V.I.S</span>
+          <span class="logo-sub">Just A Rather Very Intelligent System</span>
+        </div>
+      </div>
+      <div class="hud-right">
+        <div class="hud-stats">
+          <div class="stat"><span class="stat-label">STATUS</span><span class="stat-value online">ONLINE</span></div>
+          <div class="stat"><span class="stat-label">TIME</span><span class="stat-value" id="live-clock">--:--</span></div>
+        </div>
+        <!-- Theme toggle -->
+        <button class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
+          <span class="theme-icon" id="theme-icon">☀️</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <main class="main-layout">
+
+      <!-- LEFT: Jarvis Face Panel -->
+      <aside class="face-panel">
+        <div class="panel-title"><span class="dot"></span> NEURAL INTERFACE</div>
+
+        <!-- Jarvis Animated Face -->
+        <div class="face-wrap">
+          <div class="face-corner tl"></div><div class="face-corner tr"></div>
+          <div class="face-corner bl"></div><div class="face-corner br"></div>
+          <div class="face-ring fr1"></div>
+          <div class="face-ring fr2"></div>
+          <div class="face-ring fr3"></div>
+          <div class="face-ring fr4"></div>
+          <div class="face-particle fp1"></div>
+          <div class="face-particle fp2"></div>
+          <div class="face-particle fp3"></div>
+          <div class="pulse-ring"></div>
+          <div class="face-core-wrap">
+            <svg id="jarvis-face" width="130" height="130" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="fc"><circle cx="60" cy="60" r="55"/></clipPath></defs>
+              <circle cx="60" cy="60" r="55" fill="#041221" stroke="#00b4ff" stroke-width="1.5"/>
+              <rect class="scan-line" x="5" y="60" width="110" height="1" fill="rgba(0,180,255,0.5)" clip-path="url(#fc)"/>
+              <line x1="5" y1="45" x2="115" y2="45" stroke="rgba(0,180,255,0.08)" stroke-width="0.5"/>
+              <line x1="5" y1="60" x2="115" y2="60" stroke="rgba(0,180,255,0.08)" stroke-width="0.5"/>
+              <line x1="5" y1="75" x2="115" y2="75" stroke="rgba(0,180,255,0.08)" stroke-width="0.5"/>
+              <line x1="40" y1="5" x2="40" y2="115" stroke="rgba(0,180,255,0.08)" stroke-width="0.5"/>
+              <line x1="80" y1="5" x2="80" y2="115" stroke="rgba(0,180,255,0.08)" stroke-width="0.5"/>
+              <g class="eye-group">
+                <ellipse cx="38" cy="48" rx="12" ry="8" fill="none" stroke="#00b4ff" stroke-width="1"/>
+                <ellipse cx="38" cy="48" rx="5" ry="5" fill="#00b4ff" opacity="0.9"/>
+                <ellipse cx="38" cy="48" rx="2" ry="2" fill="#fff"/>
+              </g>
+              <g class="eye-group" style="animation-delay:0.15s">
+                <ellipse cx="82" cy="48" rx="12" ry="8" fill="none" stroke="#00b4ff" stroke-width="1"/>
+                <ellipse cx="82" cy="48" rx="5" ry="5" fill="#00b4ff" opacity="0.9"/>
+                <ellipse cx="82" cy="48" rx="2" ry="2" fill="#fff"/>
+              </g>
+              <path d="M 60 55 L 55 68 L 65 68" fill="none" stroke="#00b4ff" stroke-width="0.8" opacity="0.6"/>
+              <path id="jarvis-mouth" d="M 30 78 Q 60 82 90 78" fill="none" stroke="#00ffd5" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="60" cy="15" r="4" fill="none" stroke="#00b4ff" stroke-width="0.8" opacity="0.5"/>
+              <circle cx="60" cy="15" r="2" fill="#00b4ff" opacity="0.7"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Waveform -->
+        <div class="waveform" id="waveform">
+          <div class="w-bar" style="animation-delay:0s"></div>
+          <div class="w-bar" style="animation-delay:0.1s"></div>
+          <div class="w-bar" style="animation-delay:0.2s"></div>
+          <div class="w-bar" style="animation-delay:0.3s"></div>
+          <div class="w-bar" style="animation-delay:0.4s"></div>
+          <div class="w-bar" style="animation-delay:0.5s"></div>
+          <div class="w-bar" style="animation-delay:0.6s"></div>
+          <div class="w-bar" style="animation-delay:0.7s"></div>
+          <div class="w-bar" style="animation-delay:0.8s"></div>
+          <div class="w-bar" style="animation-delay:0.6s"></div>
+          <div class="w-bar" style="animation-delay:0.4s"></div>
+          <div class="w-bar" style="animation-delay:0.2s"></div>
+          <div class="w-bar" style="animation-delay:0.1s"></div>
+        </div>
+
+        <!-- Sound buttons -->
+        <div class="sound-grid">
+          <button class="snd-btn" onclick="playSound('boot')">⚡ BOOT</button>
+          <button class="snd-btn" onclick="playSound('hello')">👋 HELLO</button>
+          <button class="snd-btn" onclick="playSound('alert')">🚨 ALERT</button>
+          <button class="snd-btn" onclick="playSound('scan')">🔍 SCAN</button>
+          <button class="snd-btn" onclick="playSound('ready')">✅ READY</button>
+          <button class="snd-btn" onclick="playSound('beep')">📡 BEEP</button>
+        </div>
+
+        <!-- System bars -->
+        <div class="face-bars">
+          <div class="fb-row"><span class="fb-label">NEURAL</span><div class="fb-track"><div class="fb-fill" id="fb1" style="width:78%"></div></div><span class="fb-val" id="fv1">78%</span></div>
+          <div class="fb-row"><span class="fb-label">AUDIO</span><div class="fb-track"><div class="fb-fill cyan" id="fb2" style="width:91%"></div></div><span class="fb-val cyan" id="fv2">91%</span></div>
+          <div class="fb-row"><span class="fb-label">SYSTEM</span><div class="fb-track"><div class="fb-fill green" id="fb3" style="width:65%"></div></div><span class="fb-val green" id="fv3">65%</span></div>
+        </div>
+      </aside>
+
+      <!-- CENTER: Chat -->
+      <section class="chat-panel">
+        <div class="panel-title"><span class="dot"></span> COMMUNICATION FEED</div>
+
+        <div class="messages" id="messages">
+          <div class="msg ai-msg">
+            <div class="msg-avatar ai-avatar">AI</div>
+            <div class="msg-bubble">
+              <p>Good day. I am <strong>Jarvis</strong>, your AI assistant.</p>
+              <ul class="hint-list">
+                <li>🕐 "What time is it?"</li>
+                <li>🌐 "Open YouTube"</li>
+                <li>🏏 "IPL score"</li>
+                <li>🎲 "Flip a coin"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="typing-indicator" id="typing" style="display:none;">
+          <span></span><span></span><span></span>
+          <em>Jarvis is processing...</em>
+        </div>
+
+        <div class="input-row">
+          <button class="mic-btn" id="mic-btn" title="Voice Input">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </button>
+          <input type="text" id="user-input" class="chat-input" placeholder="Speak your command, sir..." autocomplete="off"/>
+          <button class="send-btn" id="send-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- RIGHT: History -->
+      <aside class="side-panel">
+        <div class="info-card">
+          <div class="panel-title"><span class="dot"></span> DIAGNOSTICS</div>
+          <div class="diag-grid">
+            <div class="diag-item"><span>API</span><span class="green">ACTIVE</span></div>
+            <div class="diag-item"><span>VOICE</span><span id="voice-status" class="yellow">READY</span></div>
+            <div class="diag-item"><span>DB</span><span class="green">SQLITE</span></div>
+            <div class="diag-item"><span>MODE</span><span class="cyan">JARVIS</span></div>
+          </div>
+        </div>
+
+        <div class="info-card history-card">
+          <div class="panel-title">
+            <span class="dot"></span> MEMORY LOG
+            <button class="refresh-btn" id="refresh-history">↻</button>
+          </div>
+          <div class="history-list" id="history-list">
+            <p class="empty-note">No history yet.</p>
+          </div>
+        </div>
+      </aside>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

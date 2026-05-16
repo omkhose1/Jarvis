@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>J.A.R.V.I.S — AI Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Animated background grid ── -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <!-- ── Main container ── -->
+  <div class="jarvis-shell">
+
+    <!-- HEADER -->
+    <header class="hud-header">
+      <div class="logo-block">
+        <div class="arc-reactor">
+          <div class="arc-ring r1"></div>
+          <div class="arc-ring r2"></div>
+          <div class="arc-core"></div>
+        </div>
+        <div class="logo-text">
+          <span class="logo-main">J.A.R.V.I.S</span>
+          <span class="logo-sub">Just A Rather Very Intelligent System</span>
+        </div>
+      </div>
+      <div class="hud-stats">
+        <div class="stat"><span class="stat-label">STATUS</span><span class="stat-value online">ONLINE</span></div>
+        <div class="stat"><span class="stat-label">AI CORE</span><span class="stat-value">GPT-3.5</span></div>
+        <div class="stat" id="clock-stat"><span class="stat-label">TIME</span><span class="stat-value" id="live-clock">--:--</span></div>
+      </div>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <main class="main-layout">
+
+      <!-- LEFT PANEL: Chat -->
+      <section class="chat-panel">
+        <div class="panel-title">
+          <span class="dot"></span> COMMUNICATION FEED
+        </div>
+
+        <!-- Messages container -->
+        <div class="messages" id="messages">
+          <!-- Welcome message -->
+          <div class="msg ai-msg">
+            <div class="msg-avatar ai-avatar">AI</div>
+            <div class="msg-bubble">
+              <p>Good day. I am <strong>Jarvis</strong>, your AI assistant.</p>
+              <p>You can ask me anything, or try commands like:</p>
+              <ul class="hint-list">
+                <li>🕐 "What time is it?"</li>
+                <li>🌐 "Open YouTube"</li>
+                <li>🔍 "Search Google for Python tutorials"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typing indicator -->
+        <div class="typing-indicator" id="typing" style="display:none;">
+          <span></span><span></span><span></span>
+          <em>Jarvis is processing...</em>
+        </div>
+
+        <!-- Input area -->
+        <div class="input-row">
+          <button class="mic-btn" id="mic-btn" title="Voice Input">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </button>
+          <input
+            type="text"
+            id="user-input"
+            class="chat-input"
+            placeholder="Speak your command, sir..."
+            autocomplete="off"
+          />
+          <button class="send-btn" id="send-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL: Info + History -->
+      <aside class="side-panel">
+
+        <!-- System info card -->
+        <div class="info-card">
+          <div class="panel-title"><span class="dot"></span> SYSTEM DIAGNOSTICS</div>
+          <div class="diag-grid">
+            <div class="diag-item"><span>API</span><span class="green">ACTIVE</span></div>
+            <div class="diag-item"><span>VOICE</span><span id="voice-status" class="yellow">READY</span></div>
+            <div class="diag-item"><span>DB</span><span class="green">SQLITE</span></div>
+            <div class="diag-item"><span>MODE</span><span class="cyan">ASSISTANT</span></div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar-label">Neural Load</div>
+            <div class="bar"><div class="bar-fill" style="width:72%"></div></div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar-label">Response Efficiency</div>
+            <div class="bar"><div class="bar-fill" style="width:91%"></div></div>
+          </div>
+        </div>
+
+        <!-- History card -->
+        <div class="info-card history-card">
+          <div class="panel-title">
+            <span class="dot"></span> MEMORY LOG
+            <button class="refresh-btn" id="refresh-history" title="Refresh History">↻</button>
+          </div>
+          <div class="history-list" id="history-list">
+            <p class="empty-note">No history loaded yet.</p>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+  </div><!-- /jarvis-shell -->
+
+  <script src="script.js"></script>
+</body>
+</html>
